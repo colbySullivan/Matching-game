@@ -18,7 +18,7 @@ image_list = ["resources/Mickey (2).png",
               "resources/goomba.png",
               "resources/dannysprite.png",
               "resources/gee.png",
-              "resources/Mickey (2).png"]
+              "resources/monk.png"]
 
 
 # Creating Matches
