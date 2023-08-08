@@ -13,13 +13,14 @@ global winner, matches
 winner = 0
 
 # list of photos for the Buttons
-string_list = ["resources/Mickey (2).png",
-              "resources/player.png",
-              "resources/goomba.png",
-              "resources/dannysprite.png",
+string_list = ["resources/Mickey.png",
+              "resources/bobs.png",
+              "resources/canman.png",
+              "resources/spooky.png",
               "resources/gee.png",
-              "resources/monk.png"]
-
+              "resources/monk.png",
+              "resources/cart.png"]
+random.shuffle(string_list)
 
 # Creating Matches
 matches = [1,1,2,2,3,3,4,4,5,5,6,6]
