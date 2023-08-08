@@ -26,14 +26,15 @@ random.shuffle(string_list)
 matches = [1,1,2,2,3,3,4,4,5,5,6,6]
 random.shuffle(matches)
 # Shuffles the Matches
-print(matches)
+# print(matches)
 
+# Put image into image list
 image_list = {}
 for x in matches:
     img = Image.open(string_list[x-1])
-    image = img.resize((90,90))
+    image = img.resize((100,100))
     image_tk = ImageTk.PhotoImage(image)
-    image_list[x] = image_tk # Put image into image list
+    image_list[x] = image_tk
 
 # Create Button Frame
 my_frame = Frame(root)
@@ -80,7 +81,7 @@ def button_click(b, number):
     global count, answer_list, answer_dict, winner, image_list
 
     if b["text"] == ' ' and count < 2:
-        b.configure(image=image_list[matches[number]], height=90, width=90)
+        b.configure(image=image_list[matches[number]], height=100, width=100)
         b["text"] = matches[number]
         # Add number to answer list
         answer_list.append(number)
