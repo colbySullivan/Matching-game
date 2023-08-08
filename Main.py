@@ -1,6 +1,9 @@
+
+import tkinter as tk
 from tkinter import *
 import random
 from tkinter import messagebox
+from PIL import ImageTk, Image  
 
 root = Tk()
 root.title('Tile Matching Game!')
@@ -10,12 +13,14 @@ global winner, matches
 winner = 0
 
 # Photos for the Buttons
-photo = PhotoImage(file= "Mickey (2).png")
-photoImage = photo.subsample(3,6) # Resizes the Photo
+# photo = PhotoImage(file= "Mickey (2).png")
+# photoImage = photo.subsample(3,6) # Resizes the Photo
+fname = "Mickey (2).png"
+image_tk = ImageTk.PhotoImage(Image.open(fname))
 
 
 # Creating Matches
-matches = [photoImage,photoImage,2,2,3,3,4,4,5,5,6,6]
+matches = [1,1,2,2,3,3,4,4,5,5,6,6]
 random.shuffle(matches)
 # Shuffles the Matches
 print(matches)
@@ -29,13 +34,12 @@ count = 0
 answer_list = []
 answer_dict = {}
 
-
 # Reset the Game
 def reset():
     global matches, winner
     winner = 0
     # Creating Matches
-    matches = [photoImage,photoImage,2,2,3,3,4,4,5,5,6,6]
+    matches = [1,1,2,2,3,3,4,4,5,5,6,6]
     random.shuffle(matches) 
     # Shuffles the Matches
     print(matches)
@@ -66,6 +70,7 @@ def button_click(b, number):
     global count, answer_list, answer_dict, winner
 
     if b["text"] == ' ' and count < 2:
+        b.configure(image=image_tk, height=30, width=60)
         b["text"] = matches[number]
         # Add number to answer list
         answer_list.append(number)
@@ -78,7 +83,7 @@ def button_click(b, number):
     # Determines correct or not
     if len(answer_list) == 2:
         if matches[answer_list[0]] == matches[answer_list[1]]:
-            my_label.config(text="MATCH!")
+            # my_label.config(text="MATCH!")
             for key in answer_dict:
                 key["state"] = "disabled"
             count = 0
@@ -88,8 +93,8 @@ def button_click(b, number):
             winner += 1
             if winner == 6:
                 win()
-        else:
-            #my_label.config(text="DOH!")
+        else:   
+            # my_label.config(text="DOH!")
             count = 0
             answer_list = []
             # Pop up box
@@ -97,13 +102,14 @@ def button_click(b, number):
 
             # Reset Buttons
             for key in answer_dict:
+                key.configure(image='', text=' ', font=("Helvetica", 20), height=3, width=6, command=lambda: button_click(b, 0), relief="raised")
                 key["text"] = " "
 
                 answer_dict = {}
 
 
 # Define Buttons
-b0 = Button(my_frame, text=' ', image = photoImage , height=3, width=6, command=lambda: button_click(b0, 0), relief="raised")
+b0 = Button(my_frame, text=' ', font=("Helvetica", 20), height=3, width=6, command=lambda: button_click(b0, 0), relief="raised")
 b1 = Button(my_frame, text=' ', font=("Helvetica", 20), height=3, width=6, command=lambda: button_click(b1, 1), relief="raised")
 b2 = Button(my_frame, text=' ', font=("Helvetica", 20), height=3, width=6, command=lambda: button_click(b2, 2), relief="raised")
 b3 = Button(my_frame, text=' ', font=("Helvetica", 20), height=3, width=6, command=lambda: button_click(b3, 3), relief="raised")
