@@ -30,11 +30,16 @@ random.shuffle(matches)
 
 # Put image into image list
 image_list = {}
-for x in matches:
-    img = Image.open(string_list[x-1])
-    image = img.resize((100,100))
-    image_tk = ImageTk.PhotoImage(image)
-    image_list[x] = image_tk
+def put_images():
+    global matches
+    for x in matches:
+        img = Image.open(string_list[x-1])
+        image = img.resize((100,100))
+        image_tk = ImageTk.PhotoImage(image)
+        image_list[x] = image_tk
+
+# Fill images list
+put_images()
 
 # Create Button Frame
 my_frame = Frame(root)
@@ -47,13 +52,17 @@ answer_dict = {}
 
 # Reset the Game
 def reset():
-    global matches, winner
+    global matches, winner, image_list
     winner = 0
     # Creating Matches
     matches = [1,1,2,2,3,3,4,4,5,5,6,6]
     random.shuffle(matches) 
     # Shuffles the Matches
-    print(matches)
+    # print(matches)
+
+    # Reset image pairings
+    image_list = {}
+    put_images()
 
     # Reset label
     my_label.config(text="")
@@ -73,7 +82,7 @@ def win():
     button_list = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11]
     # Look Through Buttons and Change Colors
     for button in button_list:
-        button.config(bg="blue")
+        button.config(bg="green")
 
      
 # Function for Clicking Buttons
