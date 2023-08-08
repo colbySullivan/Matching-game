@@ -12,8 +12,8 @@ global winner, matches
 # Set winner counter to 0
 winner = 0
 
-# Photos for the Buttons
-image_list = ["resources/Mickey (2).png",
+# list of photos for the Buttons
+string_list = ["resources/Mickey (2).png",
               "resources/player.png",
               "resources/goomba.png",
               "resources/dannysprite.png",
@@ -27,12 +27,12 @@ random.shuffle(matches)
 # Shuffles the Matches
 print(matches)
 
-string_list = {}
+image_list = {}
 for x in matches:
-    img = Image.open(image_list[x-1])
+    img = Image.open(string_list[x-1])
     image = img.resize((90,90))
     image_tk = ImageTk.PhotoImage(image)
-    string_list[x] = image_tk
+    image_list[x] = image_tk # Put image into image list
 
 # Create Button Frame
 my_frame = Frame(root)
@@ -76,10 +76,10 @@ def win():
      
 # Function for Clicking Buttons
 def button_click(b, number):
-    global count, answer_list, answer_dict, winner, string_list
+    global count, answer_list, answer_dict, winner, image_list
 
     if b["text"] == ' ' and count < 2:
-        b.configure(image=string_list[matches[number]], height=90, width=90)
+        b.configure(image=image_list[matches[number]], height=90, width=90)
         b["text"] = matches[number]
         # Add number to answer list
         answer_list.append(number)
