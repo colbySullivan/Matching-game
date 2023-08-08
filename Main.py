@@ -7,7 +7,7 @@ from PIL import ImageTk, Image
 
 root = Tk()
 root.title('Tile Matching Game!')
-root.geometry("500x550") 
+root.geometry("500x500") 
 global winner, matches
 # Set winner counter to 0
 winner = 0
@@ -29,8 +29,9 @@ print(matches)
 
 string_list = {}
 for x in matches:
-    fname = "Mickey (2).png"
-    image_tk = ImageTk.PhotoImage(Image.open(image_list[x-1]))
+    img = Image.open(image_list[x-1])
+    image = img.resize((90,90))
+    image_tk = ImageTk.PhotoImage(image)
     string_list[x] = image_tk
 
 # Create Button Frame
