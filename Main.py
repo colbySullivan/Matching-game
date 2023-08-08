@@ -13,12 +13,12 @@ global winner, matches
 winner = 0
 
 # Photos for the Buttons
-image_list = ["Mickey (2).png",
-             "player.png",
-             "goomba.png",
-             "dannysprite.png",
-             "Mickey (2).png",
-             "Mickey (2).png"]
+image_list = ["resources/Mickey (2).png",
+              "resources/player.png",
+              "resources/goomba.png",
+              "resources/dannysprite.png",
+              "resources/gee.png",
+              "resources/Mickey (2).png"]
 
 
 # Creating Matches
@@ -78,7 +78,7 @@ def button_click(b, number):
     global count, answer_list, answer_dict, winner, string_list
 
     if b["text"] == ' ' and count < 2:
-        b.configure(image=string_list[matches[number]], height=60, width=60)
+        b.configure(image=string_list[matches[number]], height=90, width=90)
         b["text"] = matches[number]
         # Add number to answer list
         answer_list.append(number)
@@ -86,7 +86,7 @@ def button_click(b, number):
         answer_dict[b] = matches[number]
         # Increment our Counter
         count += 1
-        
+
     # Determines correct or not
     if len(answer_list) == 2:
         if matches[answer_list[0]] == matches[answer_list[1]]:
