@@ -78,7 +78,7 @@ def button_click(b, number):
     global count, answer_list, answer_dict, winner, string_list
 
     if b["text"] == ' ' and count < 2:
-        b.configure(image=string_list[matches[number]], height=30, width=60)
+        b.configure(image=string_list[matches[number]], height=60, width=60)
         b["text"] = matches[number]
         # Add number to answer list
         answer_list.append(number)
@@ -86,8 +86,7 @@ def button_click(b, number):
         answer_dict[b] = matches[number]
         # Increment our Counter
         count += 1
-        #print(answer_dict) 
-    
+        
     # Determines correct or not
     if len(answer_list) == 2:
         if matches[answer_list[0]] == matches[answer_list[1]]:
@@ -110,7 +109,7 @@ def button_click(b, number):
 
             # Reset Buttons
             for key in answer_dict:
-                key.configure(image='', text=' ', font=("Helvetica", 20), height=3, width=6, command=lambda: button_click(b, 0), relief="raised")
+                key.configure(image='', text=' ', font=("Helvetica", 20), height=3, width=6, relief="raised")
                 key["text"] = " "
 
                 answer_dict = {}
